@@ -2,13 +2,13 @@ package com.example.snake;
 
 import javafx.animation.AnimationTimer;
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
+import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -50,7 +50,7 @@ public class GUI extends Application{
 
         VBox root = new VBox();
         Canvas c = new Canvas(width*cornerSize, heigth*cornerSize);
-        GraphicsContext gx = c.getGraphicsContext2D();
+        GraphicsContext gc = c.getGraphicsContext2D();
         root.getChildren().add(c);
 
         new AnimationTimer(){
@@ -65,7 +65,6 @@ public class GUI extends Application{
                     lastTick = now;
             }
         }.start();
-
 
 
 
@@ -84,6 +83,8 @@ public class GUI extends Application{
         });
 
 
+        gc.setFill(Color.BLACK);
+        gc.fillRect(0, 0, width*cornerSize, heigth*cornerSize);
         stage.setTitle("EPIC SNAKE ROYALE");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -128,18 +129,46 @@ public class GUI extends Application{
             snake.get(i).y = snake.get(i-1).y;
         }
 
-        switch(direction){
+        switch(direction) {
             case up:
                 snake.get(0).y--;
-                if (snake.get(0).y < 0){
+                if (snake.get(0).y < 0) {
                     gameOver = true;
                 }
+                break;
             case down:
                 snake.get(0).y++;
-                if(snake.get(0).y < 0){
+                if (snake.get(0).y > heigth) {
                     gameOver = true;
                 }
+            case left:
+                snake.get(0).x--;
+                if (snake.get(0).x < 0) {
+                    gameOver = true;
+                }
+                break;
+            case right:
+                snake.get(0).x++;
+                if (snake.get(0).x > width) {
+                    gameOver = true;
+                }
+                break;
         }
+
+        for(int i = 1; i < snake.size(); i++){
+            if(snake.get(0).x == snake.get(i).x &&snake.get(0).y == snake.get(i).y){
+                gameOver = true;
+            }
+        }
+    }
+
+
+    public static void eatFood(){
+        if(foodX == snake.get(0).x && foodY == snake.get(0).y){
+            snake.add(new Corner(-1,-1));
+            newFood();
+        }
+
 
     }
 }
