@@ -9,6 +9,7 @@ import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class GUI extends Application{
 
         VBox root = new VBox();
         Canvas c = new Canvas(width*cornerSize, heigth*cornerSize);
-        GraphicsContext gc = c.getGraphicsContext2D();
+        GraphicsContext gc  = c.getGraphicsContext2D();
         root.getChildren().add(c);
 
         new AnimationTimer(){
@@ -60,9 +61,13 @@ public class GUI extends Application{
                 if(lastTick == 0){
                     lastTick = now;
 
+                    // FUNGERAR EJ MED DENNA SKITEN!!!!
+                    //tick(gc);
                     return;
                 }if(now - lastTick > 1000000000 / speed)
                     lastTick = now;
+                    // FUNGERAR EJ MED DENNA SKITEN!!!!
+                    //tick(gc);
             }
         }.start();
 
@@ -85,6 +90,10 @@ public class GUI extends Application{
 
         gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, width*cornerSize, heigth*cornerSize);
+        gc.setFill(Color.WHITE);
+        gc.setFont(new Font("", 30));
+        gc.fillText("Score:",+(speed-6), 10, 30);
+
         stage.setTitle("EPIC SNAKE ROYALE");
         stage.setScene(scene);
         stage.setResizable(false);
@@ -96,37 +105,17 @@ public class GUI extends Application{
     }
 
 
-    public static void newFood(){
-        start: while(true){
-            foodX = rand.nextInt(width);
-            foodY = rand.nextInt(heigth);
-
-            for(Corner c : snake){
-                if(c.x == foodX && c.y == foodY){
-                    continue start;
-                }
-            }
-            foodColor = rand.nextInt(5);
-            speed++;
-            break;
-        }
-    }
-
-    public static void snakeStart(){
-        snake.add(new Corner(width/2, heigth/2));
-        snake.add(new Corner(width/2, heigth/2));
-        snake.add(new Corner(width/2, heigth/2));
-    }
-
     public static void tick(GraphicsContext gc){
         if(gameOver){
-
+            gc.setFill(Color.RED);
+            gc.setFont(new Font("", 50));
+            gc.fillText("GAME OVER BRO", 100, 250);
             return;
         }
 
-        for(int i = snake.size() -1 ; i>=1; i--){
-            snake.get(i).x = snake.get(i-1).x;
-            snake.get(i).y = snake.get(i-1).y;
+        for(int i = snake.size() -1 ; i >= 1; i--){
+            snake.get(i).x = snake.get(i - 1).x;
+            snake.get(i).y = snake.get(i - 1).y;
         }
 
         switch(direction) {
@@ -155,20 +144,50 @@ public class GUI extends Application{
                 break;
         }
 
-        for(int i = 1; i < snake.size(); i++){
-            if(snake.get(0).x == snake.get(i).x &&snake.get(0).y == snake.get(i).y){
-                gameOver = true;
-            }
-        }
-    }
-
-
-    public static void eatFood(){
         if(foodX == snake.get(0).x && foodY == snake.get(0).y){
             snake.add(new Corner(-1,-1));
             newFood();
         }
 
+        for(int i = 1; i < snake.size(); i++){
+            if(snake.get(0).x == snake.get(i).x && snake.get(0).y == snake.get(i).y){
+                gameOver = true;
+            }
+        }
+    }
+
+    public static void newFood(){
+        start: while(true){
+            foodX = rand.nextInt(width);
+            foodY = rand.nextInt(heigth);
+
+            for(Corner c : snake){
+                if(c.x == foodX && c.y == foodY){
+                    continue start;
+                }
+            }
+            foodColor = rand.nextInt(5);
+            speed++;
+            break;
+        }
+    }
+
+
+    public static void snakeStart(){
+        snake.add(new Corner(width/2, heigth/2));
+        snake.add(new Corner(width/2, heigth/2));
+        snake.add(new Corner(width/2, heigth/2));
+    }
+
+    /*public static void eatFood(){
+        if(foodX == snake.get(0).x && foodY == snake.get(0).y){
+            snake.add(new Corner(-1,-1));
+            newFood();
+        }
+    }*/
+
+    public static void randomFood(){
+        Color cc = Color.WHITE;
 
     }
 }
