@@ -5,6 +5,8 @@ import javafx.application.Application;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Dialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.layout.VBox;
@@ -131,6 +133,7 @@ public class GUI extends Application{
                 if (snake.get(0).y > height) {
                     gameOver = true;
                 }
+                break;
             case left:
                 snake.get(0).x--;
                 if (snake.get(0).x < 0) {
@@ -198,6 +201,11 @@ public class GUI extends Application{
 
     public static void randomFood(){
         Color cc = Color.WHITE;
+    }
 
+    public static void restartGame(){
+        if(gameOver){
+
+        }
     }
 }
