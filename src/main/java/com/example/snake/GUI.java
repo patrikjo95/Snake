@@ -6,6 +6,7 @@ import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Button;
 import javafx.scene.control.Dialog;
 import javafx.scene.input.KeyCode;
 import javafx.scene.input.KeyEvent;
@@ -110,9 +111,19 @@ public class GUI extends Application{
     public static void tick(GraphicsContext gc){
         snakeStart();
         if(gameOver){
-            gc.setFill(Color.RED);
+            GameOverPopup popup = new GameOverPopup("Game Over");
+            popup.setRestartListener(e ->{
+                popup.close();
+                snakeStart();
+            });
+            popup.setExitListener(e ->{
+                System.exit(0);
+            });
+            popup.show();
+            /*gc.setFill(Color.RED);
             gc.setFont(new Font("", 50));
-            gc.fillText("GAME OVER BRO", 100, 250);
+            gc.fillText("GAME OVER", 100, 250);*/
+
             return;
         }
 
@@ -203,9 +214,4 @@ public class GUI extends Application{
         Color cc = Color.WHITE;
     }
 
-    public static void restartGame(){
-        if(gameOver){
-
-        }
-    }
 }
