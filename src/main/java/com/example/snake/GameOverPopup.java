@@ -7,7 +7,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class Popup {
+public class GameOverPopup {
     private Stage stage;
     private Scene scene;
     private BorderPane root;
@@ -18,7 +18,8 @@ public class Popup {
     private Button exitButton;
 
 
-    public Popup(){
+    public GameOverPopup(String text){
+
 
     }
 
