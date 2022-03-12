@@ -15,7 +15,6 @@ public class Controller {
     public void startGame(){
 
         GUI.snakeStart();
-        GUI.newFood();
 
 
     }
