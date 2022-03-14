@@ -2,12 +2,21 @@
   <library name="Maven: org.apiguardian:apiguardian-api:1.1.0">
     <CLASSES>
       <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0.jar!/" />
+      <root url="file://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/lib" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0-javadoc.jar!/" />
     </JAVADOC>
     <SOURCES>
       <root url="jar://$MAVEN_REPOSITORY$/org/apiguardian/apiguardian-api/1.1.0/apiguardian-api-1.1.0-sources.jar!/" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.base" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.controls" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.fxml" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.graphics" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.media" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.swing" />
+      <root url="jar://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/src.zip!/javafx.web" />
     </SOURCES>
+    <jarDirectory url="file://$USER_HOME$/Kodningsbös/API/javafx-sdk-17.0.1/lib" recursive="false" />
   </library>
 </component>

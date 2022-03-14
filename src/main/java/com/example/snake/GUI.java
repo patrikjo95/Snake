@@ -110,22 +110,13 @@ public class GUI extends Application{
 
     public static void tick(GraphicsContext gc){
         snakeStart();
-        if(gameOver){
-            GameOverPopup popup = new GameOverPopup("Game Over");
-            popup.setRestartListener(e ->{
-                popup.close();
-                snakeStart();
-            });
-            popup.setExitListener(e ->{
-                System.exit(0);
-            });
-            popup.show();
-            /*gc.setFill(Color.RED);
+        isGameOver();
+
+
+           /* gc.setFill(Color.RED);
             gc.setFont(new Font("", 50));
             gc.fillText("GAME OVER", 100, 250);*/
 
-            return;
-        }
 
         for(int i = snake.size() -1 ; i >= 1; i--){
             snake.get(i).x = snake.get(i - 1).x;
@@ -212,6 +203,20 @@ public class GUI extends Application{
 
     public static void randomFood(){
         Color cc = Color.WHITE;
+    }
+
+    public static void isGameOver() {
+        if (gameOver) {
+            GameOverPopup popup = new GameOverPopup("Game Over");
+            popup.setRestartListener(e -> {
+                popup.close();
+                snakeStart();
+            });
+            popup.setExitListener(e -> {
+                System.exit(0);
+            });
+            popup.show();
+        }
     }
 
 }
